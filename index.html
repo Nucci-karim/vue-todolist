@@ -12,22 +12,24 @@
 <body>
     <div id="app">
         <!-- container di tutto -->
-        <div class="container text-center">
+        <div class="container text-center card my-3 p-2">
             <h1>My ToDoList!</h1>   
 
             <!-- tipo form per inserire i dati nella lista -->
             <div class="text-center m-2">
-                <input type="text">
-                <button>Aggiungi Alla Lista</button>
+                <input type="text" v-model="addText" @keyUp.enter="creaTodo">
+                <button @click="creaTodo">Aggiungi Alla Lista</button>
+                <p class="alert alert-danger p-2 m-1" v-if="error">Scrivi qualcosa prima di inviare</p>
             </div>
 
             <!-- sezione lista -->
-            <div class="bg-secondary rounded">
+            <div class="rounded-2">
                 <div 
                 v-for="(element, index) in todos"
-                class="d-flex justify-content-between align-items-center border-bottom p-2">
+                :class="(index % 2 == 0) ? 'bg-white': 'bg-secondary'"
+                class="d-flex justify-content-between align-items-center border-bottom border-top p-2">
                     <p class="m-0">{{element.text}}</p>
-                    <i class="fa-solid fa-xmark"></i>
+                    <i class="fa-solid fa-xmark" @click="cancella(index)"></i>
                 </div>
             </div>
         </div>
