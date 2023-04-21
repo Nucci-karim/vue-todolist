@@ -28,7 +28,8 @@
                 v-for="(element, index,) in todos"
                 :class="(index % 2 == 0) ? 'bg-white': 'bg-secondary'"
                 class="d-flex justify-content-between align-items-center border-bottom border-top p-2">
-                    <p class="m-0" :class="(element.done != false) ? 'text-decoration-line-through': ''">
+                    <p class="m-0" :class="(element.done != false) ? 'text-decoration-line-through': ''"
+                    @click="barraElemento(index, element)">
                         {{element.text}}
                     </p>
                     <i class="fa-solid fa-xmark" @click="cancella(index)"></i>
